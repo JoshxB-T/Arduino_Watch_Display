@@ -32,20 +32,25 @@ void loop() {
 
   // Battery top side
   display.drawFastHLine(2, 2, 26, SSD1306_WHITE);
+
   // First bar
   display.drawFastVLine(2, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(7, 2, 12, SSD1306_WHITE);
+
   // Second bar
   display.drawFastVLine(9, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(14, 2, 12, SSD1306_WHITE);
+
   // Third bar
   display.drawFastVLine(16, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(21, 2, 12, SSD1306_WHITE);
+
   // Fourth bar
   display.drawFastVLine(23, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(28, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(29, 4, 8, SSD1306_WHITE);
   display.drawFastVLine(30, 6, 4, SSD1306_WHITE);
+
   // Battery bottom side
   display.drawFastHLine(2, 13, 26, SSD1306_WHITE);
 
@@ -54,9 +59,12 @@ void loop() {
   display.drawFastVLine(  0, 12,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 12,   3, SSD1306_WHITE);
 
+  // Blue top segment
   display.drawFastHLine(  0, 16, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 17,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 17,   3, SSD1306_WHITE);
+
+  // Blue bottom segment
   display.drawFastHLine(  0, 63, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 60,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 60,   3, SSD1306_WHITE);
