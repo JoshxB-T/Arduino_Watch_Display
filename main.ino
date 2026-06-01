@@ -48,6 +48,8 @@ void loop() {
   // Fourth bar
   display.drawFastVLine(23, 2, 12, SSD1306_WHITE);
   display.drawFastVLine(28, 2, 12, SSD1306_WHITE);
+
+  // Battery positive terminal side
   display.drawFastVLine(29, 4, 8, SSD1306_WHITE);
   display.drawFastVLine(30, 6, 4, SSD1306_WHITE);
 
