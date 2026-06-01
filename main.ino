@@ -1,35 +1,57 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+#define MAX 5
+
 // Global timer
 unsigned long currMillis;
 
 // OLED screen
 const uint8_t screenWidth = 128;
 const uint8_t screenHeight = 64;
-int level = 4;
+int level = MAX;
 Adafruit_SSD1306 display(screenWidth, screenHeight, &Wire, -1);
 
 void drawBatteryLevel(void) {
   switch(level) {
     case 0: {
       // First bar
+      display.drawFastVLine(4, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(5, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(6, 4, 8, SSD1306_BLACK);
       Serial.println("First level off");
       break;
     }
     case 1: {
       // Second bar
+      display.drawFastVLine( 8, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine( 9, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(10, 4, 8, SSD1306_BLACK);
       Serial.println("Second level off");
       break;
     }
     case 2: {
       // Third bar
+      display.drawFastVLine(12, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(13, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(14, 4, 8, SSD1306_BLACK);
       Serial.println("Third level off");
       break;
     }
     case 3: {
-      // Fourth bar off
+      // Fourth bar
+      display.drawFastVLine(16, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(17, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(18, 4, 8, SSD1306_BLACK);
       Serial.println("Fourth level off");
+      break;
+    }
+    case 4: {
+      // Fifth bar
+      display.drawFastVLine(20, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(21, 4, 8, SSD1306_BLACK);
+      display.drawFastVLine(22, 4, 8, SSD1306_BLACK);
+      Serial.println("Fifth level off");
       break;
     }
     default: {
@@ -111,7 +133,7 @@ void loop() {
   delay(2000);
 
   if (level < 0) {
-    level = 4;
+    level = MAX;
     Serial.println();
   }
 
