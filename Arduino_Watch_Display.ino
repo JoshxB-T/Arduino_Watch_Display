@@ -20,6 +20,8 @@
 #define BATTERY_LEVEL_WIDTH 3
 #define BATTERY_LEVEL_HEIGHT 7
 
+#define CLOCK_COORD_X 75
+
 extern const char * SSID;
 extern const char * PSWD;
 
@@ -48,8 +50,8 @@ void displayBatteryLevel(void) {
 }
 
 void displayTimeClock(void) {
-  display.fillRect(37, 5, 48, 8, SSD1306_BLACK);
-  display.setCursor(37, 5);
+  display.fillRect(CLOCK_COORD_X + 2, 5, 48, 8, SSD1306_BLACK);
+  display.setCursor(CLOCK_COORD_X + 2, 5);
 
   RTCTime currentTime;
   RTC.getTime(currentTime);
@@ -100,7 +102,7 @@ void setup() {
   display.drawFastVLine(26,  7,  3, SSD1306_WHITE); // Positive terminal
 
   // Clock outline
-  display.drawRect(35, 3, 51, 11, SSD1306_WHITE);
+  display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
 
   // Lower outline
   display.drawFastHLine(  0, 16, 128, SSD1306_WHITE);
