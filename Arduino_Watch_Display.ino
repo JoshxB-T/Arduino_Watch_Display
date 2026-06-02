@@ -3,12 +3,14 @@
 #include "RTC.h"
 #include "secrets.h"
 
+#define ONE_MILLISECOND 1000
+
 #define BATTERY_100 100
-#define BATTERY_80 80
-#define BATTERY_60 60
-#define BATTERY_40 40
-#define BATTERY_20 20
-#define BATTERY_05 5
+#define BATTERY_080 80
+#define BATTERY_060 60
+#define BATTERY_040 40
+#define BATTERY_020 20
+#define BATTERY_005 5
 #define BATTERY_FRST_X 4
 #define BATTERY_SCND_X 8
 #define BATTERY_THRD_X 12
@@ -27,15 +29,15 @@ unsigned long startMillis;
 // OLED screen
 const uint8_t screenWidth = 128;
 const uint8_t screenHeight = 64;
-int level = BATTERY_100;
+int battery_level = BATTERY_100;
 Adafruit_SSD1306 display(screenWidth, screenHeight, &Wire, -1);
 
 void displayBatteryLevel(void) {
-  if (level < BATTERY_05)      { display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
-  else if (level < BATTERY_20) { display.fillRect(BATTERY_SCND_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
-  else if (level < BATTERY_40) { display.fillRect(BATTERY_THRD_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
-  else if (level < BATTERY_60) { display.fillRect(BATTERY_FRTH_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
-  else if (level < BATTERY_80) { display.fillRect(BATTERY_FFTH_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  if (battery_level < BATTERY_005)      { display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  else if (battery_level < BATTERY_020) { display.fillRect(BATTERY_SCND_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  else if (battery_level < BATTERY_040) { display.fillRect(BATTERY_THRD_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  else if (battery_level < BATTERY_060) { display.fillRect(BATTERY_FRTH_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  else if (battery_level < BATTERY_080) { display.fillRect(BATTERY_FFTH_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
   else { 
     display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
     display.fillRect(BATTERY_SCND_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
@@ -78,16 +80,16 @@ void setup() {
     }    
   }
 
-  // OLED
+  // OLED init
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.clearDisplay();
 
-  // Upper
+  // Upper outline
   display.drawFastHLine(  0,  1, 128, SSD1306_WHITE);
-  display.drawFastVLine(  0,  2,   4, SSD1306_WHITE);
-  display.drawFastVLine(127,  2,   4, SSD1306_WHITE);
+  display.drawFastVLine(  0,  2,   3, SSD1306_WHITE);
+  display.drawFastVLine(127,  2,   3, SSD1306_WHITE);
   display.drawFastHLine(  0, 15, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 12,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 12,   3, SSD1306_WHITE);
@@ -100,7 +102,7 @@ void setup() {
   // Clock outline
   display.drawRect(35, 3, 51, 11, SSD1306_WHITE);
 
-  // Lower
+  // Lower outline
   display.drawFastHLine(  0, 16, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 17,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 17,   3, SSD1306_WHITE);
@@ -116,15 +118,14 @@ void setup() {
  * Blue dimensions: 16 (top) - 63 (bottom) so 48 lines of blue
  */
 void loop() {
-  // put your main code here, to run repeatedly:
   unsigned long currMillis = millis();
 
-  if (currMillis - startMillis >= 1000) {
+  if (currMillis - startMillis >= ONE_MILLISECOND) {
     displayBatteryLevel(); 
 
-    level -= 5;
+    battery_level -= 5;
 
-    if (level < 0) { level = BATTERY_100; }
+    if (battery_level < 0) { battery_level = BATTERY_100; }
 
     startMillis = currMillis;
   }
