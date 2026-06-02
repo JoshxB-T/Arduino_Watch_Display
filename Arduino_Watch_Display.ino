@@ -93,10 +93,11 @@ void setup() {
   display.drawFastVLine(127, 12,   3, SSD1306_WHITE);
 
   // Battery outline
-  display.drawFastHLine( 2,  3, 23, SSD1306_WHITE); // Top
-  display.drawFastHLine( 2, 13, 23, SSD1306_WHITE); // Bottom
-  display.drawFastVLine( 2,  4,  9, SSD1306_WHITE); // Left
-  display.drawFastVLine(24,  4,  9, SSD1306_WHITE); // Right
+  display.drawRect(2, 3, 23, 11, SSD1306_WHITE);
+  //display.drawFastHLine( 2,  3, 23, SSD1306_WHITE); // Top
+  //display.drawFastHLine( 2, 13, 23, SSD1306_WHITE); // Bottom
+  //display.drawFastVLine( 2,  4,  9, SSD1306_WHITE); // Left
+  //display.drawFastVLine(24,  4,  9, SSD1306_WHITE); // Right
   display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Positive terminal
   display.drawFastVLine(26,  7,  3, SSD1306_WHITE); // Positive terminal
 
