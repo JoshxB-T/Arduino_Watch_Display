@@ -10,6 +10,9 @@
 #define BATTERY_20 20
 #define BATTERY_05 5
 
+#define BATTERY_COORD_Y 5
+#define BATTERY_LEVEL_HEIGHT 7
+
 extern const char * SSID;
 extern const char * PSWD;
 
@@ -25,54 +28,54 @@ Adafruit_SSD1306 display(screenWidth, screenHeight, &Wire, -1);
 void displayBatteryLevel(void) {
   if (level < BATTERY_05) {
     // First bar
-    display.drawFastVLine(4, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(5, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(6, 4, 8, SSD1306_BLACK);
+    display.drawFastVLine(4, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(5, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(6, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
   } else if (level < BATTERY_20) {
     // Second bar
-    display.drawFastVLine( 8, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine( 9, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(10, 4, 8, SSD1306_BLACK);
+    display.drawFastVLine( 8, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine( 9, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(10, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
   } else if (level < BATTERY_40) {
     // Third bar
-    display.drawFastVLine(12, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(13, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(14, 4, 8, SSD1306_BLACK);
+    display.drawFastVLine(12, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(13, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(14, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
   } else if (level < BATTERY_60) {
     // Fourth bar
-    display.drawFastVLine(16, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(17, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(18, 4, 8, SSD1306_BLACK);
+    display.drawFastVLine(16, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(17, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(18, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
   } else if (level < BATTERY_80) {
     // Fifth bar
-    display.drawFastVLine(20, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(21, 4, 8, SSD1306_BLACK);
-    display.drawFastVLine(22, 4, 8, SSD1306_BLACK);
+    display.drawFastVLine(20, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(21, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
+    display.drawFastVLine(22, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK);
   } else {
     // First bar
-    display.drawFastVLine(4, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(5, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(6, 4, 8, SSD1306_WHITE);
+    display.drawFastVLine(4, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(5, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(6, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
 
     // Second bar
-    display.drawFastVLine( 8, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine( 9, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(10, 4, 8, SSD1306_WHITE);
+    display.drawFastVLine( 8, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine( 9, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(10, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
 
     // Third bar
-    display.drawFastVLine(12, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(13, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(14, 4, 8, SSD1306_WHITE);
+    display.drawFastVLine(12, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(13, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(14, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
 
     // Fourth bar
-    display.drawFastVLine(16, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(17, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(18, 4, 8, SSD1306_WHITE);
+    display.drawFastVLine(16, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(17, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(18, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
 
     // Fifth bar
-    display.drawFastVLine(20, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(21, 4, 8, SSD1306_WHITE);
-    display.drawFastVLine(22, 4, 8, SSD1306_WHITE);
+    display.drawFastVLine(20, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(21, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
+    display.drawFastVLine(22, BATTERY_COORD_Y, BATTERY_LEVEL_HEIGHT, SSD1306_WHITE);
   }
 }
 
@@ -130,16 +133,16 @@ void loop() {
 
   if (currMillis - startMillis >= 1000) {
     // Yellow top segment
-    display.drawFastHLine(  0,  0, 128, SSD1306_WHITE);
-    display.drawFastVLine(  0,  1,   3, SSD1306_WHITE);
-    display.drawFastVLine(127,  1,   3, SSD1306_WHITE);
+    display.drawFastHLine(  0,  1, 128, SSD1306_WHITE);
+    display.drawFastVLine(  0,  2,   4, SSD1306_WHITE);
+    display.drawFastVLine(127,  2,   4, SSD1306_WHITE);
 
-    display.drawFastHLine( 2,  2, 23, SSD1306_WHITE); // Battery top side
+    display.drawFastHLine( 2,  3, 23, SSD1306_WHITE); // Battery top side
     display.drawFastHLine( 2, 13, 23, SSD1306_WHITE); // Battery bottom side
-    display.drawFastVLine( 2,  3, 11, SSD1306_WHITE); // Battery left side
-    display.drawFastVLine(24,  3, 11, SSD1306_WHITE); // Battery right side
-    display.drawFastVLine(25,  4,  8, SSD1306_WHITE); // Battery positive terminal side
-    display.drawFastVLine(26,  6,  4, SSD1306_WHITE);
+    display.drawFastVLine( 2,  4,  9, SSD1306_WHITE); // Battery left side
+    display.drawFastVLine(24,  4,  9, SSD1306_WHITE); // Battery right side
+    display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Battery positive terminal side
+    display.drawFastVLine(26,  7,  3, SSD1306_WHITE);
 
     // Yellow bottom segment
     display.drawFastHLine(  0, 15, 128, SSD1306_WHITE);
