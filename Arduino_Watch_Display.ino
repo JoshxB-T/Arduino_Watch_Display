@@ -77,7 +77,8 @@ void displayBatteryLevel(void) {
 }
 
 void displayTimeClock(void) {
-  display.drawFastHLine(35, 2, 60, SSD1306_WHITE);
+  display.drawFastHLine(35, 3, 60, SSD1306_WHITE);
+  display.drawFastHLine(35, 13, 60, SSD1306_WHITE);
   display.fillRect(35, 5, 60, 8, SSD1306_BLACK);
   display.setCursor(35, 5);
 
@@ -103,7 +104,7 @@ void setup() {
 
   if (!RTC.isRunning()) {
     if (savedTime.getYear() == 2000) {
-      RTCTime startTime(22, Month::JULY, 2024, 16, 52, 00, DayOfWeek::MONDAY, SaveLight::SAVING_TIME_ACTIVE);
+      RTCTime startTime(22, Month::JUNE, 2026, 23, 59, 00, DayOfWeek::MONDAY, SaveLight::SAVING_TIME_ACTIVE);
       RTC.setTime(startTime);
     } else {
       RTC.setTime(savedTime);
