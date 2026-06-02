@@ -46,8 +46,8 @@ void displayBatteryLevel(void) {
 }
 
 void displayTimeClock(void) {
-  display.fillRect(35, 5, 60, 8, SSD1306_BLACK);
-  display.setCursor(35, 5);
+  display.fillRect(37, 5, 48, 8, SSD1306_BLACK);
+  display.setCursor(37, 5);
 
   RTCTime currentTime;
   RTC.getTime(currentTime);
@@ -92,17 +92,16 @@ void setup() {
   display.drawFastVLine(  0, 12,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 12,   3, SSD1306_WHITE);
 
-  // Battery
-  display.drawFastHLine( 2,  3, 23, SSD1306_WHITE); // Battery top side
-  display.drawFastHLine( 2, 13, 23, SSD1306_WHITE); // Battery bottom side
-  display.drawFastVLine( 2,  4,  9, SSD1306_WHITE); // Battery left side
-  display.drawFastVLine(24,  4,  9, SSD1306_WHITE); // Battery right side
-  display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Battery positive terminal side
-  display.drawFastVLine(26,  7,  3, SSD1306_WHITE);
+  // Battery outline
+  display.drawFastHLine( 2,  3, 23, SSD1306_WHITE); // Top
+  display.drawFastHLine( 2, 13, 23, SSD1306_WHITE); // Bottom
+  display.drawFastVLine( 2,  4,  9, SSD1306_WHITE); // Left
+  display.drawFastVLine(24,  4,  9, SSD1306_WHITE); // Right
+  display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Positive terminal
+  display.drawFastVLine(26,  7,  3, SSD1306_WHITE); // Positive terminal
 
-  // Clock
-  display.drawFastHLine(35, 3, 60, SSD1306_WHITE);
-  display.drawFastHLine(35, 13, 60, SSD1306_WHITE);
+  // Clock outline
+  display.drawRect(35, 3, 51, 11, SSD1306_WHITE);
 
   // Lower
   display.drawFastHLine(  0, 16, 128, SSD1306_WHITE);
