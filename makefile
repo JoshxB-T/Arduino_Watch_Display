@@ -1,4 +1,4 @@
-make: compile
+make: compile upload
 
 compile:
 	arduino-cli compile --fqbn arduino:renesas_uno:unor4wifi --verbose
