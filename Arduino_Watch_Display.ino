@@ -67,7 +67,7 @@ void displayTimeClock(void) {
 }
 
 void displayStatus(void) {
-  display.setCursor(2, 54);
+  display.setCursor(4, 53);
   display.print("> STATUS");
 }
 
@@ -116,6 +116,9 @@ void setup() {
   // Clock outline
   display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
 
+  // Status outline
+  display.drawRect(2, 51, 124, 11, SSD1306_WHITE);
+
   startMillis = millis();
 }
 
@@ -126,6 +129,7 @@ void setup() {
 void loop() {
   unsigned long currMillis = millis();
 
+  // One second display updates loop
   if (currMillis - startMillis >= ONE_MILLISECOND) {
     displayBatteryLevel(); 
     battery_level -= 5;
