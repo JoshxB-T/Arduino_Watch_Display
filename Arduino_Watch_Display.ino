@@ -66,7 +66,6 @@ void displayTimeClock(void) {
   display.print(currentTime.getSeconds());
 }
 
-
 void setup() {
   // Time
   RTC.begin();
@@ -88,7 +87,7 @@ void setup() {
   display.setTextColor(SSD1306_WHITE);
   display.clearDisplay();
 
-  // Upper outline
+  // Upper outline (yellow)
   display.drawFastHLine(  0,  1, 128, SSD1306_WHITE);
   display.drawFastVLine(  0,  2,   3, SSD1306_WHITE);
   display.drawFastVLine(127,  2,   3, SSD1306_WHITE);
@@ -96,21 +95,21 @@ void setup() {
   display.drawFastVLine(  0, 12,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 12,   3, SSD1306_WHITE);
 
-  // Battery outline
-  display.drawRect(2, 3, 23, 11, SSD1306_WHITE);
-  display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Positive terminal
-  display.drawFastVLine(26,  7,  3, SSD1306_WHITE); // Positive terminal
-
-  // Clock outline
-  display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
-
-  // Lower outline
+  // Lower outline (blue)
   display.drawFastHLine(  0, 16, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 17,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 17,   3, SSD1306_WHITE);
   display.drawFastHLine(  0, 63, 128, SSD1306_WHITE);
   display.drawFastVLine(  0, 60,   3, SSD1306_WHITE);
   display.drawFastVLine(127, 60,   3, SSD1306_WHITE);
+
+  // Battery outline
+  display.drawRect(2, 3, 23, 11, SSD1306_WHITE);
+  display.drawFastVLine(25,  5,  7, SSD1306_WHITE); // Positive terminal side (and line below)
+  display.drawFastVLine(26,  7,  3, SSD1306_WHITE);
+
+  // Clock outline
+  display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
 
   startMillis = millis();
 }
