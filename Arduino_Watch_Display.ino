@@ -71,6 +71,11 @@ void displayStatus(void) {
   display.print("> STATUS");
 }
 
+void drawSoundwave(void) {
+  display.setCursor(4, 20);
+  display.print("../\\.../\\...../\\/\\..");
+}
+
 void setup() {
   // Time
   RTC.begin();
@@ -83,7 +88,7 @@ void setup() {
       RTC.setTime(startTime);
     } else {
       RTC.setTime(savedTime);
-    }    
+    }
   }
 
   // OLED init
@@ -116,6 +121,9 @@ void setup() {
   // Clock outline
   display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
 
+  // Soundwave outline
+  display.drawRect(2, 18, 124, 11, SSD1306_WHITE);
+
   // Status outline
   display.drawRect(2, 51, 124, 11, SSD1306_WHITE);
 
@@ -135,6 +143,8 @@ void loop() {
     battery_level -= 5;
 
     if (battery_level < 0) { battery_level = BATTERY_100; }
+
+    drawSoundwave();
 
     startMillis = currMillis;
   }
