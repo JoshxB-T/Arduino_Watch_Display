@@ -74,6 +74,10 @@ void displayStatus(void) {
 void drawSoundwave(void) {
   display.setCursor(4, 20);
   display.print("../\\.../\\...../\\/\\..");
+  display.setCursor(4, 28);
+  display.print("../\\.../\\...../\\/\\..");
+  display.setCursor(4, 36);
+  display.print("../\\.../\\...../\\/\\..");
 }
 
 void setup() {
