@@ -122,7 +122,7 @@ void setup() {
   display.drawRect(CLOCK_COORD_X, 3, 51, 11, SSD1306_WHITE);
 
   // Soundwave outline
-  display.drawRect(2, 18, 124, 11, SSD1306_WHITE);
+  display.drawRect(2, 18, 124, 32, SSD1306_WHITE);
 
   // Status outline
   display.drawRect(2, 51, 124, 11, SSD1306_WHITE);
