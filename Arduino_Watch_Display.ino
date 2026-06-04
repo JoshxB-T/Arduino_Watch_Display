@@ -66,6 +66,11 @@ void displayTimeClock(void) {
   display.print(currentTime.getSeconds());
 }
 
+void displayStatus(void) {
+  display.setCursor(2, 54);
+  display.print("> STATUS");
+}
+
 void setup() {
   // Time
   RTC.begin();
@@ -123,7 +128,6 @@ void loop() {
 
   if (currMillis - startMillis >= ONE_MILLISECOND) {
     displayBatteryLevel(); 
-
     battery_level -= 5;
 
     if (battery_level < 0) { battery_level = BATTERY_100; }
@@ -132,5 +136,6 @@ void loop() {
   }
 
   displayTimeClock();
+  displayStatus();
   display.display();
 }
