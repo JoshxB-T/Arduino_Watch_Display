@@ -1,5 +1,6 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <stdlib.h>
 #include "RTC.h"
 #include "secrets.h"
 
@@ -33,6 +34,9 @@ const uint8_t screenWidth = 128;
 const uint8_t screenHeight = 64;
 int battery_level = BATTERY_100;
 Adafruit_SSD1306 display(screenWidth, screenHeight, &Wire, -1);
+
+// Soundwave
+int graph[3][20];
 
 void displayBatteryLevel(void) {
   if (battery_level < BATTERY_005)      { display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
@@ -71,13 +75,46 @@ void displayStatus(void) {
   display.print("> STATUS");
 }
 
+void drawGraphChar(int c) {
+  switch(c) {
+    case 0: {
+      display.print(".");
+    } break;
+    case 1: {
+      display.print("/\\");
+    } break;
+    default: {
+      display.print(".");    
+    } break;
+  }
+}
+
 void drawSoundwave(void) {
+  display.fillRect(4, 20, 120, 29, SSD1306_BLACK);
+
   display.setCursor(4, 20);
-  display.print("../\\.../\\...../\\/\\..");
+  for (int i = 0; i < 20; ++i) {
+    drawGraphChar(graph[0][i]);
+
+    if (rand() & 0x1) { graph[0][i] = 1; }
+    else { graph[0][i] = 0; }
+  }
+
   display.setCursor(4, 28);
-  display.print("../\\.../\\...../\\/\\..");
+  for (int i = 0; i < 20; ++i) {
+    drawGraphChar(graph[1][i]);
+
+    if (rand() & 0x1) { graph[1][i] = 1; }
+    else { graph[1][i] = 0; }
+  }
+
   display.setCursor(4, 36);
-  display.print("../\\.../\\...../\\/\\..");
+  for (int i = 0; i < 20; ++i) {
+    drawGraphChar(graph[2][i]);
+
+    if (rand() & 0x1) { graph[2][i] = 1; }
+    else { graph[2][i] = 0; }
+  }
 }
 
 void setup() {
@@ -127,6 +164,7 @@ void setup() {
 
   // Soundwave outline
   display.drawRect(2, 18, 124, 32, SSD1306_WHITE);
+  memset(&graph, 0x00, sizeof(graph));
 
   // Status outline
   display.drawRect(2, 51, 124, 11, SSD1306_WHITE);
