@@ -81,7 +81,7 @@ void drawGraphChar(int c) {
       display.print(".");
     } break;
     case 1: {
-      display.print("/\\");
+      display.print("^");
     } break;
     default: {
       display.print(".");    
