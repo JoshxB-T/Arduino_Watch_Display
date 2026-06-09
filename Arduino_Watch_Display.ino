@@ -39,7 +39,7 @@ Adafruit_SSD1306 display(screenWidth, screenHeight, &Wire, -1);
 int graph[3][20];
 
 void displayBatteryLevel(void) {
-  if (battery_level < BATTERY_005)      { display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
+  if      (battery_level < BATTERY_005) { display.fillRect(BATTERY_FRST_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
   else if (battery_level < BATTERY_020) { display.fillRect(BATTERY_SCND_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
   else if (battery_level < BATTERY_040) { display.fillRect(BATTERY_THRD_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
   else if (battery_level < BATTERY_060) { display.fillRect(BATTERY_FRTH_X, BATTERY_COORD_Y, BATTERY_LEVEL_WIDTH, BATTERY_LEVEL_HEIGHT, SSD1306_BLACK); }
@@ -70,9 +70,16 @@ void displayTimeClock(void) {
   display.print(currentTime.getSeconds());
 }
 
-void displayStatus(void) {
+void drawStatus(void) {
+  display.fillRect(4, 53, 120, 8, SSD1306_BLACK);
   display.setCursor(4, 53);
-  display.print("> STATUS");
+
+  int rand_num = rand();
+
+  if      (rand_num & 0x1) { display.print("> CONNECTED");  }
+  else if (rand_num & 0x2) { display.print("> CONNECTING"); }
+  else if (rand_num & 0x4) { display.print("> SEARCHING");  }
+  else                     { display.print("> UPDATING");   }
 }
 
 void drawGraphChar(int c) {
@@ -194,11 +201,11 @@ void loop() {
     if (battery_level < 0) { battery_level = BATTERY_100; }
 
     drawSoundwave();
+    drawStatus();
 
     startMillis = currMillis;
   }
 
   displayTimeClock();
-  displayStatus();
   display.display();
 }
