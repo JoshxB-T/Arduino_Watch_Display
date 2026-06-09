@@ -91,30 +91,37 @@ void drawGraphChar(int c) {
 
 void drawSoundwave(void) {
   display.fillRect(4, 20, 120, 29, SSD1306_BLACK);
+  int rand_num = rand();
 
   display.setCursor(4, 20);
-  for (int i = 0; i < 20; ++i) {
+  for (int i = 0; i < 19; ++i) {
     drawGraphChar(graph[0][i]);
-
-    if (rand() & 0x1) { graph[0][i] = 1; }
-    else { graph[0][i] = 0; }
+    graph[0][i] = graph[0][i + 1];
   }
+  drawGraphChar(graph[0][19]);
 
   display.setCursor(4, 28);
-  for (int i = 0; i < 20; ++i) {
+  for (int i = 0; i < 19; ++i) {
     drawGraphChar(graph[1][i]);
-
-    if (rand() & 0x1) { graph[1][i] = 1; }
-    else { graph[1][i] = 0; }
+    graph[1][i] = graph[1][i + 1];
   }
+  drawGraphChar(graph[1][19]);
 
   display.setCursor(4, 36);
-  for (int i = 0; i < 20; ++i) {
+  for (int i = 0; i < 19; ++i) {
     drawGraphChar(graph[2][i]);
-
-    if (rand() & 0x1) { graph[2][i] = 1; }
-    else { graph[2][i] = 0; }
+    graph[2][i] = graph[2][i + 1];
   }
+  drawGraphChar(graph[2][19]);
+
+  if (rand_num & 0x1) { graph[0][19] = 1; }
+  else { graph[0][19] = 0; }
+
+  if (rand_num & 0x2) { graph[1][19] = 1; }
+  else { graph[1][19] = 0; }
+
+  if (rand_num & 0x4) { graph[2][19] = 1; }
+  else { graph[2][19] = 0; }
 }
 
 void setup() {
